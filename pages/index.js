@@ -1,4 +1,4 @@
-import BlankAvatar from "@/components/BlankAvatar";
+import BlankAvatar from "@/components/Avatar";
 import { useSession, signOut, signIn } from "next-auth/react";
 import { Inter } from "next/font/google";
 import Link from "next/link";

@@ -1,6 +1,8 @@
 import React from "react";
 import { useSession } from "next-auth/react";
 import MainLayout from "@/components/main-layout";
+import { useRouter } from "next/router";
+
 const PrivatePage = () => {
   const { data: session, status } = useSession();
 
@@ -9,7 +11,9 @@ const PrivatePage = () => {
   }
 
   if (!session) {
-    return <div>Access Denied</div>;
+    const router = useRouter();
+    router.push("/sign-in");
+    return <div>Redirecting...</div>;
   }
 
   return <div>PrivatePage</div>;
