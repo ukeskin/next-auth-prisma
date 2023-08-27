@@ -1,18 +1,17 @@
-import BlankAvatar from "@/components/Avatar";
-import { useSession, signOut, signIn } from "next-auth/react";
-import { Inter } from "next/font/google";
-import Link from "next/link";
-
-import MainLayout from "@/components/main-layout";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useSession, signOut } from "next-auth/react";
 
 export default function Home() {
   const { data, status } = useSession();
   console.log(data, status);
-  return <>home page</>;
+  return (
+    <>
+      home page
+      {status === "authenticated" && (
+        <>
+          <p>signed in as {data.user.email}</p>
+          <button onClick={() => signOut()}>Sign out</button>
+        </>
+      )}
+    </>
+  );
 }
-
-Home.getLayout = function getLayout(page) {
-  return <MainLayout>{page}</MainLayout>;
-};
